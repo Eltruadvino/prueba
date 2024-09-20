@@ -1,49 +1,38 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        // Paso 1: Genera una lista de 10 números aleatorios entre 1 y 100
-        List<Integer> numeros = new ArrayList<>();
-        Random random = new Random();
+        // Crear un objeto Scanner para leer la entrada del usuario
+        Scanner scanner = new Scanner(System.in);
 
-        for (int i = 0; i < 10; i++) {
-            numeros.add(random.nextInt(100) + 1);
-        }
+        // Solicitar al usuario las coordenadas del primer punto
+        System.out.print("Ingresa la coordenada x del primer punto: ");
+        double x1 = scanner.nextDouble();
+        System.out.print("Ingresa la coordenada y del primer punto: ");
+        double y1 = scanner.nextDouble();
 
-        // Paso 2: Calcula la raíz cuadrada de cada número
-        List<Double> raicesCuadradas = new ArrayList<>();
-        for (int num : numeros) {
-            raicesCuadradas.add(Math.sqrt(num));
-        }
+        // Solicitar al usuario las coordenadas del segundo punto
+        System.out.print("Ingresa la coordenada x del segundo punto: ");
+        double x2 = scanner.nextDouble();
+        System.out.print("Ingresa la coordenada y del segundo punto: ");
+        double y2 = scanner.nextDouble();
 
-        // Paso 3: Eleva cada número al cuadrado
-        List<Double> cuadrados = new ArrayList<>();
-        for (int num : numeros) {
-            cuadrados.add(Math.pow(num, 2));
-        }
+        // Calcular la distancia entre los dos puntos usando la fórmula de la distancia euclidiana
+        double distancia = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
 
-        // Paso 4: Calcula la media
-        double suma = 0;
-        for (int num : numeros) {
-            suma += num;
-        }
-        double media = suma / numeros.size();
+        // Calcular el ángulo en radianes usando Math.atan2
+        double anguloRadianes = Math.atan2(y2 - y1, x2 - x1);
 
-        // Paso 5: Calcula la desviación estándar
-        double sumatoriaDesviacion = 0;
-        for (int num : numeros) {
-            sumatoriaDesviacion += Math.pow(num - media, 2);
-        }
-        double desviacionEstandar = Math.sqrt(sumatoriaDesviacion / numeros.size());
+        // Convertir el ángulo de radianes a grados usando Math.toDegrees
+        double anguloGrados = Math.toDegrees(anguloRadianes);
 
-        // Paso 6: Muestra los resultados
-        System.out.println("Lista de números originales: " + numeros);
-        System.out.println("Raíz cuadrada de los números: " + raicesCuadradas);
-        System.out.println("Números elevados al cuadrado: " + cuadrados);
-        System.out.println("Media de los números: " + media);
-        System.out.println("Desviación estándar de los números: " + desviacionEstandar);
+        // Mostrar los resultados
+        System.out.println("La distancia entre los puntos es: " + distancia);
+        System.out.println("El ángulo entre la línea y el eje x (en radianes) es: " + anguloRadianes);
+        System.out.println("El ángulo entre la línea y el eje x (en grados) es: " + anguloGrados);
+
+        // Cerrar el escáner
+        scanner.close();
     }
 }
