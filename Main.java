@@ -1,40 +1,40 @@
 public class Main {
 
     public static void main(String[] args) {
-        String cadena = "supercalifragilisticoespialidoso";
+        String nombreCompleto = "García, Juan Carlos";
 
-        // 1. Mostrar la longitud de la cadena
-        System.out.println("Longitud de la cadena: " + cadena.length());
+        // 1. Obtener la longitud del nombre completo
+        System.out.println("Longitud del nombre completo: " + nombreCompleto.length());
 
-        // 2. Mostrar el carácter en la posición 10
-        System.out.println("Carácter en la posición 10: " + cadena.charAt(9));
+        // 2. Extraer el apellido (la subcadena antes de la coma)
+        String apellido = nombreCompleto.substring(0, nombreCompleto.indexOf(","));
+        System.out.println("Apellido: " + apellido);
 
-        // 3. Convertir la cadena a mayúsculas
-        String cadenaMayusculas = cadena.toUpperCase();
-        System.out.println("Cadena en mayúsculas: " + cadenaMayusculas);
+        // 3. Extraer el nombre completo sin el apellido (subcadena después de la coma)
+        String nombre = nombreCompleto.substring(nombreCompleto.indexOf(",") + 2);
+        System.out.println("Nombre completo sin el apellido: " + nombre);
 
-        // 4. Obtener la subcadena desde la posición 5 hasta la 15
-        String subcadena1 = cadena.substring(4, 15);
-        System.out.println("Subcadena de la posición 5 a la 15: " + subcadena1);
+        // 4. Mostrar el primer nombre (primera palabra del nombre completo)
+        String primerNombre = nombre.split(" ")[0];
+        System.out.println("Primer nombre: " + primerNombre);
 
-        // 5. Mostrar la primera ocurrencia de la letra 'i'
-        int primeraOcurrenciaI = cadena.indexOf('i');
-        System.out.println("Primera ocurrencia de 'i': " + primeraOcurrenciaI);
+        // 5. Convertir el apellido a mayúsculas
+        String apellidoMayusculas = apellido.toUpperCase();
+        System.out.println("Apellido en mayúsculas: " + apellidoMayusculas);
 
-        // 6. Mostrar la última ocurrencia de la letra 'o'
-        int ultimaOcurrenciaO = cadena.lastIndexOf('o');
-        System.out.println("Última ocurrencia de 'o': " + ultimaOcurrenciaO);
+        // 6. Convertir el nombre completo a minúsculas
+        String nombreCompletoMinusculas = nombreCompleto.toLowerCase();
+        System.out.println("Nombre completo en minúsculas: " + nombreCompletoMinusculas);
 
-        // 7. Convertir la cadena a minúsculas
-        String cadenaMinusculas = cadena.toLowerCase();
-        System.out.println("Cadena en minúsculas: " + cadenaMinusculas);
+        // 7. Mostrar el carácter en la posición 5 del nombre completo
+        System.out.println("Carácter en la posición 5: " + nombreCompleto.charAt(4));
 
-        // 8. Obtener la subcadena desde la posición 7 hasta el final
-        String subcadena2 = cadena.substring(6);
-        System.out.println("Subcadena desde la posición 7 hasta el final: " + subcadena2);
+        // 8. Mostrar la posición de la primera ocurrencia de la letra 'a' en el nombre completo
+        int primeraOcurrenciaA = nombreCompleto.indexOf('a');
+        System.out.println("Primera ocurrencia de 'a': " + primeraOcurrenciaA);
 
-        // 9. Mostrar la última ocurrencia de la frase "li"
-        int ultimaOcurrenciaLi = cadena.lastIndexOf("li");
-        System.out.println("Última ocurrencia de 'li': " + ultimaOcurrenciaLi);
+        // 9. Mostrar la última ocurrencia de la letra 'a' en el nombre completo
+        int ultimaOcurrenciaA = nombreCompleto.lastIndexOf('a');
+        System.out.println("Última ocurrencia de 'a': " + ultimaOcurrenciaA);
     }
 }
