@@ -1,55 +1,66 @@
 public class Main {
 
     public static void main(String[] args) {
-        String direccion = "Av. Libertador, 1234, Ciudad de México, C.P. 06000";
+        // Cadena del producto
+        String productoInfo = "12345; Laptop HP Pavilion; 1500.99; Electrónica";
 
-        // 1. Validación de longitud
-        if (direccion.length() < 10 || direccion.length() > 100) {
-            System.out.println("La dirección no es válida por su longitud.");
-            return;
+        // 1. Obtener la longitud de la cadena
+        int longitudCadena = productoInfo.length();
+        System.out.println("Longitud de la cadena: " + longitudCadena);
+
+        // 2. Extraer el ID del producto (antes del primer ';')
+        String[] partes = productoInfo.split("; ");
+        String idProducto = partes[0];
+        System.out.println("ID del producto: " + idProducto);
+
+        // 3. Obtener el nombre del producto (entre el primer y segundo ';')
+        String nombreProducto = partes[1];
+        System.out.println("Nombre del producto: " + nombreProducto);
+
+        // 4. Convertir el nombre del producto a mayúsculas
+        String nombreMayusculas = nombreProducto.toUpperCase();
+        System.out.println("Nombre del producto en mayúsculas: " + nombreMayusculas);
+
+        // 5. Extraer el precio y convertirlo a un número decimal
+        String precioString = partes[2];
+        double precio = Double.parseDouble(precioString);
+        System.out.println("Precio del producto: " + precio);
+
+        // 6. Mostrar el carácter en la posición 10 del nombre del producto
+        if (nombreProducto.length() >= 10) {
+            char caracterPos10 = nombreProducto.charAt(9); // Recuerda que los índices comienzan en 0
+            System.out.println("Carácter en la posición 10 del nombre del producto: " + caracterPos10);
+        } else {
+            System.out.println("El nombre del producto es demasiado corto.");
         }
 
-        // 2. Extracción de caracteres relevantes
-        char primerCaracter = direccion.charAt(0);
-        char ultimoCaracter = direccion.charAt(direccion.length() - 1);
-        System.out.println("El primer carácter de la dirección es: " + primerCaracter);
-        System.out.println("El último carácter de la dirección es: " + ultimoCaracter);
+        // 7. Obtener la primera ocurrencia de la letra 'a' en el nombre del producto
+        int primeraOcurrenciaA = nombreProducto.indexOf('a');
+        if (primeraOcurrenciaA != -1) {
+            System.out.println("Primera ocurrencia de la letra 'a' en el nombre del producto: " + primeraOcurrenciaA);
+        } else {
+            System.out.println("No se encontró la letra 'a' en el nombre del producto.");
+        }
 
-        // 3. Conversión a mayúsculas y minúsculas
-        String direccionMayus = direccion.toUpperCase();
-        String direccionMinus = direccion.toLowerCase();
-        System.out.println("Dirección en mayúsculas: " + direccionMayus);
-        System.out.println("Dirección en minúsculas: " + direccionMinus);
+        // 8. Mostrar la última ocurrencia de la letra 'o' en el nombre del producto
+        int ultimaOcurrenciaO = nombreProducto.lastIndexOf('o');
+        if (ultimaOcurrenciaO != -1) {
+            System.out.println("Última ocurrencia de la letra 'o' en el nombre del producto: " + ultimaOcurrenciaO);
+        } else {
+            System.out.println("No se encontró la letra 'o' en el nombre del producto.");
+        }
 
-        // 4. División en componentes
-        String[] componentes = direccion.split(", ");
-        String calle = componentes[0];
-        String numero = componentes[1];
-        String ciudad = componentes[2];
-        String codigoPostal = componentes[3].replace("C.P. ", "");
+        // 9. Convertir el precio a texto y concatenarlo con la categoría
+        String categoriaProducto = partes[3];
+        String precioConcatenadoConCategoria = precioString + " - " + categoriaProducto;
+        System.out.println("Precio y categoría concatenados: " + precioConcatenadoConCategoria);
 
-        System.out.println("Calle: " + calle);
-        System.out.println("Número: " + numero);
-        System.out.println("Ciudad: " + ciudad);
-        System.out.println("Código Postal: " + codigoPostal);
-
-        // 5. Búsqueda de números
-        int posicionNumero = direccion.indexOf(numero);
-        System.out.println("La primera aparición de un número está en la posición: " + posicionNumero);
-
-        // 6. Reemplazo de caracteres especiales (como comas o puntos) por espacios
-        String direccionCorregida = direccion.replaceAll("[.,]", "");
-        System.out.println("Dirección corregida: " + direccionCorregida);
-
-        // 7. Eliminación de espacios innecesarios
-        String direccionSinEspaciosExtra = direccion.trim().replaceAll("\\s+", " ");
-        System.out.println("Dirección completa sin espacios extra: " + direccionSinEspaciosExtra);
-
-        // 8. Generación de una versión abreviada
-        String direccionAbreviada = calle.split(" ")[1] + ", " + numero + ", " + ciudad.split(" ")[2] + ", " + codigoPostal;
-        System.out.println("Versión abreviada de la dirección: " + direccionAbreviada);
-
-        // 9. Normalización de la dirección
-        // Este paso depende del formato deseado, en este caso la dirección ya está estandarizada.
+        // 10. Mostrar la subcadena desde la posición 7 hasta el final del nombre del producto
+        if (nombreProducto.length() >= 7) {
+            String subcadenaDesde7 = nombreProducto.substring(6);
+            System.out.println("Subcadena desde la posición 7 hasta el final: " + subcadenaDesde7);
+        } else {
+            System.out.println("El nombre del producto es demasiado corto para extraer una subcadena.");
+        }
     }
 }
