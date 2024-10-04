@@ -1,66 +1,61 @@
+import java.text.DecimalFormat;
+
 public class Main {
 
+    // Método para cifrar el correo electrónico
+    public static String cifrarCorreo(String correo) {
+        // Separar el nombre de usuario y el dominio
+        String[] partesCorreo = correo.split("@");
+        String usuario = partesCorreo[0];
+        String dominio = partesCorreo[1];
+
+        // Invertir el nombre de usuario
+        String usuarioInvertido = new StringBuilder(usuario).reverse().toString();
+
+        // Retornar el correo cifrado
+        return usuarioInvertido + "@" + dominio;
+    }
+
+    // Método para cifrar la fecha de ascenso (año, mes, día)
+    public static int cifrarFechaAscenso(int anio, int mes, int dia) {
+        // Sumar los componentes de la fecha
+        return anio + mes + dia;
+    }
+
+    // Método para cifrar el salario
+    public static double cifrarSalario(double salario) {
+        // Separar la parte entera y la parte decimal
+        int parteEntera = (int) salario;
+        double parteDecimal = salario - parteEntera;
+
+        // Calcular la diferencia absoluta
+        double diferencia = Math.abs(parteEntera - parteDecimal);
+
+        // Retornar el resultado multiplicado por 2
+        return diferencia * 2;
+    }
+
+    // Método principal
     public static void main(String[] args) {
-        // Cadena del producto
-        String productoInfo = "12345; Laptop HP Pavilion; 1500.99; Electrónica";
+        // Ejemplo de datos de entrada
+        String correo = "juan.perez@empresa.com";
+        int anioAscenso = 2020;
+        int mesAscenso = 5;
+        int diaAscenso = 15;
+        double salario = 55000.75;
 
-        // 1. Obtener la longitud de la cadena
-        int longitudCadena = productoInfo.length();
-        System.out.println("Longitud de la cadena: " + longitudCadena);
+        // Cifrado de los datos
+        String correoCifrado = cifrarCorreo(correo);
+        int fechaCifrada = cifrarFechaAscenso(anioAscenso, mesAscenso, diaAscenso);
+        double salarioCifrado = cifrarSalario(salario);
 
-        // 2. Extraer el ID del producto (antes del primer ';')
-        String[] partes = productoInfo.split("; ");
-        String idProducto = partes[0];
-        System.out.println("ID del producto: " + idProducto);
+        // Formato del salario para mantener dos decimales
+        DecimalFormat formatoDecimal = new DecimalFormat("#.00");
 
-        // 3. Obtener el nombre del producto (entre el primer y segundo ';')
-        String nombreProducto = partes[1];
-        System.out.println("Nombre del producto: " + nombreProducto);
+        // Resultado final con delimitador '|'
+        String resultadoFinal = correoCifrado + "|" + fechaCifrada + "|" + formatoDecimal.format(salarioCifrado);
 
-        // 4. Convertir el nombre del producto a mayúsculas
-        String nombreMayusculas = nombreProducto.toUpperCase();
-        System.out.println("Nombre del producto en mayúsculas: " + nombreMayusculas);
-
-        // 5. Extraer el precio y convertirlo a un número decimal
-        String precioString = partes[2];
-        double precio = Double.parseDouble(precioString);
-        System.out.println("Precio del producto: " + precio);
-
-        // 6. Mostrar el carácter en la posición 10 del nombre del producto
-        if (nombreProducto.length() >= 10) {
-            char caracterPos10 = nombreProducto.charAt(9); // Recuerda que los índices comienzan en 0
-            System.out.println("Carácter en la posición 10 del nombre del producto: " + caracterPos10);
-        } else {
-            System.out.println("El nombre del producto es demasiado corto.");
-        }
-
-        // 7. Obtener la primera ocurrencia de la letra 'a' en el nombre del producto
-        int primeraOcurrenciaA = nombreProducto.indexOf('a');
-        if (primeraOcurrenciaA != -1) {
-            System.out.println("Primera ocurrencia de la letra 'a' en el nombre del producto: " + primeraOcurrenciaA);
-        } else {
-            System.out.println("No se encontró la letra 'a' en el nombre del producto.");
-        }
-
-        // 8. Mostrar la última ocurrencia de la letra 'o' en el nombre del producto
-        int ultimaOcurrenciaO = nombreProducto.lastIndexOf('o');
-        if (ultimaOcurrenciaO != -1) {
-            System.out.println("Última ocurrencia de la letra 'o' en el nombre del producto: " + ultimaOcurrenciaO);
-        } else {
-            System.out.println("No se encontró la letra 'o' en el nombre del producto.");
-        }
-
-        // 9. Convertir el precio a texto y concatenarlo con la categoría
-        String categoriaProducto = partes[3];
-        String precioConcatenadoConCategoria = precioString + " - " + categoriaProducto;
-        System.out.println("Precio y categoría concatenados: " + precioConcatenadoConCategoria);
-
-        // 10. Mostrar la subcadena desde la posición 7 hasta el final del nombre del producto
-        if (nombreProducto.length() >= 7) {
-            String subcadenaDesde7 = nombreProducto.substring(6);
-            System.out.println("Subcadena desde la posición 7 hasta el final: " + subcadenaDesde7);
-        } else {
-            System.out.println("El nombre del producto es demasiado corto para extraer una subcadena.");
-        }
+        // Imprimir el resultado
+        System.out.println("Datos cifrados: " + resultadoFinal);
     }
 }
